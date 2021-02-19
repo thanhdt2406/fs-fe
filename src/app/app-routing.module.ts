@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: MasterComponent,
     loadChildren: () => import('./module/shop.module').then(module => module.ShopModule)
-  }
+  },
 ];
 
 @NgModule({
