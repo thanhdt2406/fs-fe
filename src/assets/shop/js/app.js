@@ -496,7 +496,7 @@
               autoplayControls: false,// Autoplay-plugin
               actualSize: false,// Zoom-plugin: Enable actual pixel icon
               hash: false, // Hash-plugin
-              share: false// share-plugin
+              share: false// shareShop-plugin
           });
           // Thumbnail images
           // Fires after first initialization

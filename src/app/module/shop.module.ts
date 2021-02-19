@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 
-import { FooterComponent } from '../component/share/footer/footer.component';
-import { HeaderComponent } from '../component/share/header/header.component';
-import { NavbarComponent } from '../component/share/navbar/navbar.component';
+import { FooterComponent } from '../component/shareShop/footer/footer.component';
+import { HeaderComponent } from '../component/shareShop/header/header.component';
+import { NavbarComponent } from '../component/shareShop/navbar/navbar.component';
 
 import { HomepageComponent } from '../component/shop/homepage/homepage.component';
 import {DetailComponent} from '../component/shop/detail/detail.component';
