@@ -12,6 +12,7 @@ import {ShopGirdComponent} from '../component/shop/shop-gird/shop-gird.component
 import {CardComponent} from '../component/shop/card/card.component';
 import {UserComponent} from '../component/shop/user/user/user.component';
 import {SidebarComponent} from '../component/shop/user/sidebar/sidebar.component';
+import {AuthGuard} from "../helper/auth-guard";
 
 const routes: Routes = [
   {

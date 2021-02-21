@@ -6,19 +6,23 @@ import { AppComponent } from './app.component';
 import { ShopModule } from './module/shop.module';
 import { MasterComponent } from './component/shop/master/master.component';
 import { SignupComponent } from './component/signin-signup/signup/signup.component';
-import { SigninComponent } from './component/signin-signup/signin/signin.component';
+import { LoginComponent } from './component/signin-signup/login/login.component';
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     MasterComponent,
     SignupComponent,
-    SigninComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ShopModule
+    ShopModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
