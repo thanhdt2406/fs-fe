@@ -30,59 +30,109 @@
               <div class="l-f-o">
                 <div class="l-f-o__pad-box">
                   <h1 class="gl-h1">PERSONAL INFORMATION</h1>
-                  <form class="l-f-o__form">
-                    <div class="gl-s-api">
-                      <div class="u-s-m-b-15">
+                  <form class="l-f-o__form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    <!--                    <div class="gl-s-api">-->
+                    <!--                      <div class="u-s-m-b-15">-->
 
-                        <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+                    <!--                        <button class="gl-s-api__btn gl-s-api__btn&#45;&#45;fb" type="button"><i class="fab fa-facebook-f"></i>-->
 
-                          <span>Signup with Facebook</span></button>
-                      </div>
-                      <div class="u-s-m-b-30">
+                    <!--                          <span>Signup with Facebook</span></button>-->
+                    <!--                      </div>-->
+                    <!--                      <div class="u-s-m-b-30">-->
 
-                        <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+                    <!--                        <button class="gl-s-api__btn gl-s-api__btn&#45;&#45;gplus" type="button"><i class="fab fa-google"></i>-->
 
-                          <span>Signup with Google</span></button>
-                      </div>
-                    </div>
+                    <!--                          <span>Signup with Google</span></button>-->
+                    <!--                      </div>-->
+                    <!--                    </div>-->
                     <div class="u-s-m-b-30">
 
                       <label class="gl-label" for="reg-uname">USERNAME *</label>
 
                       <input class="input-text input-text--primary-style" type="text" id="reg-uname"
-                             placeholder="First Name"></div>
+                             placeholder="Enter Username" formControlName="username">
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required" style="color: red; font-size: 12px">Username is
+                          required
+                        </div>
+                        <div *ngIf="f.username.errors.minlength" style="color: red; font-size: 12px">Username must have
+                          at least 6 characters!
+                        </div>
+                        <div *ngIf="f.username.errors.maxlength" style="color: red; font-size: 12px">Username can be
+                          maximum 32 characters!
+                        </div>
+                      </div>
+                    </div>
                     <div class="u-s-m-b-30">
 
                       <label class="gl-label" for="reg-password">PASSWORD *</label>
 
-                      <input class="input-text input-text--primary-style" type="text" id="reg-password"
-                             placeholder="Enter Password"></div>
+                      <input class="input-text input-text--primary-style" type="password" id="reg-password"
+                             placeholder="Enter Password" formControlName="password">
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required" style="color: red; font-size: 12px">Password is
+                          required
+                        </div>
+                        <div *ngIf="f.password.errors.minlength" style="color: red; font-size: 12px">Password must have
+                          at least 6 characters!
+                        </div>
+                      </div>
+                    </div>
                     <div class="u-s-m-b-30">
 
-                      <label class="gl-label" for="reg-phone">PHONE NUMBER *</label>
+                      <label class="gl-label" for="reg-name">FULL NAME *</label>
+
+                      <input class="input-text input-text--primary-style" type="text" id="reg-name"
+                             placeholder="Enter Full Name" formControlName="name">
+                      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required" style="color: red; font-size: 12px">Name is required</div>
+                      </div>
+                    </div>
+                    <div class="u-s-m-b-30">
+
+                      <label class="gl-label" for="reg-name">PHONE NUMBER *</label>
 
                       <input class="input-text input-text--primary-style" type="text" id="reg-phone"
-                             placeholder="Enter Phone Number"></div>
+                             placeholder="Enter Phone Number" formControlName="phoneNumber">
+                      <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                        <div *ngIf="f.phoneNumber.errors.required" style="color: red; font-size: 12px">Phone number is
+                          required
+                        </div>
+                        <div *ngIf="f.phoneNumber.errors.minlength" style="color: red; font-size: 12px">Phone number
+                          must have 10 characters!
+                        </div>
+                        <div *ngIf="f.phoneNumber.errors.maxlength" style="color: red; font-size: 12px">Phone number
+                          must have 10 characters!
+                        </div>
+                      </div>
+                    </div>
                     <div class="u-s-m-b-30">
 
                       <label class="gl-label" for="reg-address">ADDRESS *</label>
 
                       <input class="input-text input-text--primary-style" type="text" id="reg-address"
-                             placeholder="Enter Address"></div>
+                             placeholder="Enter Address" formControlName="address">
+                      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required" style="color: red; font-size: 12px">Address is required
+                        </div>
+                      </div>
+                    </div>
                     <div class="gl-inline">
                       <div class="u-s-m-b-30">
                         <div class="gl-dob">
-                          <select class="select-box select-box--primary-style">
-                            <option selected value="">Province</option>
-                            <option value="male">January</option>
+                          <select class="select-box select-box--primary-style" id="province" formControlName="province"
+                                  (change)="updateDistrict()">
+                            <option selected value="-1">Province</option>
+                            <option *ngFor="let p of provinces" [value]="p.id">{{p.name}}</option>
                           </select>
-                          <select class="select-box select-box--primary-style">
-                            <option selected value="">District</option>
-                            <option value="01">01</option>
+                          <select class="select-box select-box--primary-style" formControlName="district"
+                                  (change)="updateWard()">
+                            <option selected value="-1">District</option>
+                            <option *ngFor="let d of districts" [value]="d.id">{{d.name}}</option>
                           </select>
-                          <select class="select-box select-box--primary-style">
-                            <option selected value="">Ward</option>
-                            <option value="1991">1991</option>
+                          <select class="select-box select-box--primary-style" formControlName="ward">
+                            <option selected value="-1">Ward</option>
+                            <option *ngFor="let w of wards" [value]="w.id">{{w.name}}</option>
                           </select>
                         </div>
                         <!--====== End - Date of Birth Select-Box ======-->
@@ -93,15 +143,19 @@
                       <label class="gl-label" for="reg-email">E-MAIL</label>
 
                       <input class="input-text input-text--primary-style" type="text" id="reg-email"
-                             placeholder="Enter E-mail">
+                             placeholder="Enter E-mail" formControlName="email">
                     </div>
 
+                    <div class="gl-inline">
+                      <div class="u-s-m-b-15">
 
-                    <div class="u-s-m-b-15">
-
-                      <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
+                        <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
+                      </div>
+                      <div class="u-s-m-b-30">
+                        <div *ngIf="error" class="alert alert-danger mt-3 mb-0"
+                             style="color: red; font-size: 15px; text-align: center">{{error}}</div>
+                      </div>
                     </div>
-
                     <a class="gl-link" href="#">Return to Store</a>
                   </form>
                 </div>

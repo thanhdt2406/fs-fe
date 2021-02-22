@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {UserToken} from "../model/usertoken";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
+import {SignupRequest} from "../model/signup-request";
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -25,7 +26,7 @@ export class AuthService {
   }
 
   public login(username: string, password: string) {
-    return this.http.post<any>(API_URL + '/api/auth/login', {username, password})
+    return this.http.post<any>(`${API_URL}/auth/login`, {username, password})
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -37,6 +38,10 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     // @ts-ignore
     this.currentUserSubject.next(null);
-    return this.http.post<any>(API_URL+'/api/auth/logout',{});
+    return this.http.post<any>(`${API_URL}/auth/logout`,{});
+  }
+
+  public signup(signupRequest: SignupRequest) {
+    return this.http.post<any>(`${API_URL}/auth/signup`,signupRequest);
   }
 }
