@@ -9,6 +9,7 @@ import { SignupComponent } from './component/signin-signup/signup/signup.compone
 import { LoginComponent } from './component/signin-signup/login/login.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { AdminComponent } from './component/admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MasterComponent,
     SignupComponent,
     LoginComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
